@@ -411,6 +411,7 @@ def delete_key(m):
 
 @bot.message_handler(commands=["start"])
 def start(m):
+    print("DA CHAY LENH START:", m.chat.id)
     kb = telebot.types.ReplyKeyboardMarkup(
         resize_keyboard=True,
         row_width=2

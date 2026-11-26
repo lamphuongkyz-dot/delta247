@@ -27,7 +27,7 @@ OWNER = "NGUYEN LAM PHUONG"
 if not TOKEN:
     raise RuntimeError("Chưa cấu hình BOT_TOKEN")
 
-bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot(TOKEN, threaded=False)
 def setup_commands():
     commands = [
 telebot.types.BotCommand("addproduct", "Thêm sản phẩm"),

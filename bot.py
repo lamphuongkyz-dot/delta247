@@ -754,9 +754,20 @@ def telegram_webhook():
     if json_data:
         update = telebot.types.Update.de_json(json_data)
         print("UPDATE ID:", update.update_id)
-        bot.process_new_updates([update])
+        try:
+            bot.process_new_updates([update])
+            print("DA XU LY UPDATE THANH CONG")
+        except Exception as e:
+            print("LOI XU LY UPDATE:", repr(e))
 
     return "OK", 200
+
+
+
+
+
+
+
 
 print("DELTA247 WEBHOOK DANG KHOI DONG...")
 setup_commands()

@@ -748,9 +748,10 @@ def telegram_webhook():
     if request.headers.get("X-Telegram-Bot-Api-Secret-Token") != secret:
         abort(403)
 
+
     json_data = request.get_json(silent=True)
     print("WEBHOOK NHAN JSON:", bool(json_data))
-
+    print("NOI DUNG TIN NHAN:", json_data.get("message", {}).get("text") if json_data else None)
     if json_data:
         update = telebot.types.Update.de_json(json_data)
         print("UPDATE ID:", update.update_id)

@@ -741,10 +741,6 @@ def support(m):
 
 app = Flask(__name__)
 
-@app.route("/")
-def home():
-    return "DELTA247 BOT ONLINE", 200
-
 @app.route("/telegram", methods=["POST"])
 def telegram_webhook():
     secret = os.getenv("WEBHOOK_SECRET")
@@ -753,12 +749,14 @@ def telegram_webhook():
         abort(403)
 
     json_data = request.get_json(silent=True)
+    print("WEBHOOK NHAN JSON:", bool(json_data))
+
     if json_data:
         update = telebot.types.Update.de_json(json_data)
+        print("UPDATE ID:", update.update_id)
         bot.process_new_updates([update])
 
     return "OK", 200
-
 
 print("DELTA247 WEBHOOK DANG KHOI DONG...")
 setup_commands()
